@@ -1,0 +1,35 @@
+@model MakeBetter.Models.UsersInTask
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>UsersInTask</legend>
+
+    <div class="display-label">AllowedByOwner</div>
+    <div class="display-field">@Model.AllowedByOwner</div>
+
+    <div class="display-label">Rating</div>
+    <div class="display-field">@Model.Rating</div>
+
+    <div class="display-label">Comment</div>
+    <div class="display-field">@Model.Comment</div>
+
+    <div class="display-label">FinalHelperAgreement</div>
+    <div class="display-field">@Model.FinalHelperAgreement</div>
+
+    <div class="display-label">Task</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Task).ToString()</div>
+
+    <div class="display-label">User</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.User).ToString()</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.UsersInTaskId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

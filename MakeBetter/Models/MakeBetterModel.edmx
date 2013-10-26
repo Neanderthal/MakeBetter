@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище MakeBetterModel" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Хранилище MakeBetterModelContainer">
+          <EntitySet Name="Comment" EntityType="Хранилище MakeBetterModel.Comment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Task" EntityType="Хранилище MakeBetterModel.Task" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="Хранилище MakeBetterModel.User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UsersInTask" EntityType="Хранилище MakeBetterModel.UsersInTask" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Comment_Task" Association="Хранилище MakeBetterModel.FK_Comment_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="Хранилище MakeBetterModel.FK_Comment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_User" Association="Хранилище MakeBetterModel.FK_Task_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersInTask_Task" Association="Хранилище MakeBetterModel.FK_UsersInTask_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="UsersInTask" EntitySet="UsersInTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersInTask_User" Association="Хранилище MakeBetterModel.FK_UsersInTask_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UsersInTask" EntitySet="UsersInTask" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Body" Type="nvarchar" MaxLength="500" />
+          <Property Name="TaskId" Type="uniqueidentifier" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="TaskId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="State" Type="tinyint" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="140" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="UseId" Type="uniqueidentifier" />
+          <Property Name="TaskType" Type="int" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="DurationMinutes" Type="int" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Longitude" Type="float" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="NickName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="KloutId" Type="nchar" MaxLength="15" />
+          <Property Name="DnaId" Type="nchar" MaxLength="15" />
+          <Property Name="PasswordHash" Type="nchar" MaxLength="200" />
+          <Property Name="VKId" Type="nchar" MaxLength="50" />
+          <Property Name="FacebookId" Type="nchar" MaxLength="50" />
+          <Property Name="GoogleId" Type="nchar" MaxLength="50" />
+          <Property Name="Banned" Type="bit" />
+          <Property Name="Phone" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="UsersInTask">
+          <Key>
+            <PropertyRef Name="UsersInTaskId" />
+          </Key>
+          <Property Name="UsersInTaskId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="uniqueidentifier" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="AllowedByOwner" Type="bit" />
+          <Property Name="Rating" Type="tinyint" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="140" />
+          <Property Name="FinalHelperAgreement" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Comment_Task">
+          <End Role="Task" Type="Хранилище MakeBetterModel.Task" Multiplicity="0..1" />
+          <End Role="Comment" Type="Хранилище MakeBetterModel.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Role="User" Type="Хранилище MakeBetterModel.User" Multiplicity="0..1" />
+          <End Role="Comment" Type="Хранилище MakeBetterModel.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_User">
+          <End Role="User" Type="Хранилище MakeBetterModel.User" Multiplicity="0..1" />
+          <End Role="Task" Type="Хранилище MakeBetterModel.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="UseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersInTask_Task">
+          <End Role="Task" Type="Хранилище MakeBetterModel.Task" Multiplicity="0..1" />
+          <End Role="UsersInTask" Type="Хранилище MakeBetterModel.UsersInTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="UsersInTask">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersInTask_User">
+          <End Role="User" Type="Хранилище MakeBetterModel.User" Multiplicity="0..1" />
+          <End Role="UsersInTask" Type="Хранилище MakeBetterModel.UsersInTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UsersInTask">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MakeBetter.Models" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MakeBetterEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Comment" EntityType="MakeBetter.Models.Comment" />
+          <EntitySet Name="Task" EntityType="MakeBetter.Models.Task" />
+          <EntitySet Name="User" EntityType="MakeBetter.Models.User" />
+          <EntitySet Name="UsersInTask" EntityType="MakeBetter.Models.UsersInTask" />
+          <AssociationSet Name="FK_Comment_Task" Association="MakeBetter.Models.FK_Comment_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="MakeBetter.Models.FK_Comment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_User" Association="MakeBetter.Models.FK_Task_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersInTask_Task" Association="MakeBetter.Models.FK_UsersInTask_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="UsersInTask" EntitySet="UsersInTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersInTask_User" Association="MakeBetter.Models.FK_UsersInTask_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UsersInTask" EntitySet="UsersInTask" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Guid" Nullable="false" />
+          <Property Name="Body" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="TaskId" Type="Guid" />
+          <Property Name="UserId" Type="Guid" />
+          <NavigationProperty Name="Task" Relationship="MakeBetter.Models.FK_Comment_Task" FromRole="Comment" ToRole="Task" />
+          <NavigationProperty Name="User" Relationship="MakeBetter.Models.FK_Comment_User" FromRole="Comment" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="TaskId" Type="Guid" Nullable="false" />
+          <Property Name="State" Type="Byte" />
+          <Property Name="ShortDescription" Type="String" MaxLength="140" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="UseId" Type="Guid" />
+          <Property Name="TaskType" Type="Int32" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="DurationMinutes" Type="Int32" />
+          <NavigationProperty Name="Comment" Relationship="MakeBetter.Models.FK_Comment_Task" FromRole="Task" ToRole="Comment" />
+          <NavigationProperty Name="User" Relationship="MakeBetter.Models.FK_Task_User" FromRole="Task" ToRole="User" />
+          <NavigationProperty Name="UsersInTask" Relationship="MakeBetter.Models.FK_UsersInTask_Task" FromRole="Task" ToRole="UsersInTask" />
+          <Property Type="Double" Name="Latitude" />
+          <Property Type="Double" Name="Longitude" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="NickName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="KloutId" Type="String" MaxLength="15" Unicode="true" FixedLength="true" />
+          <Property Name="DnaId" Type="String" MaxLength="15" Unicode="true" FixedLength="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="200" Unicode="true" FixedLength="true" />
+          <Property Name="VKId" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="FacebookId" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="GoogleId" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="Banned" Type="Boolean" />
+          <Property Name="Phone" Type="String" MaxLength="15" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Comment" Relationship="MakeBetter.Models.FK_Comment_User" FromRole="User" ToRole="Comment" />
+          <NavigationProperty Name="Task" Relationship="MakeBetter.Models.FK_Task_User" FromRole="User" ToRole="Task" />
+          <NavigationProperty Name="UsersInTask" Relationship="MakeBetter.Models.FK_UsersInTask_User" FromRole="User" ToRole="UsersInTask" />
+        </EntityType>
+        <EntityType Name="UsersInTask">
+          <Key>
+            <PropertyRef Name="UsersInTaskId" />
+          </Key>
+          <Property Name="UsersInTaskId" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Guid" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="AllowedByOwner" Type="Boolean" />
+          <Property Name="Rating" Type="Byte" />
+          <Property Name="Comment" Type="String" MaxLength="140" Unicode="true" FixedLength="false" />
+          <Property Name="FinalHelperAgreement" Type="Boolean" />
+          <NavigationProperty Name="Task" Relationship="MakeBetter.Models.FK_UsersInTask_Task" FromRole="UsersInTask" ToRole="Task" />
+          <NavigationProperty Name="User" Relationship="MakeBetter.Models.FK_UsersInTask_User" FromRole="UsersInTask" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Comment_Task">
+          <End Role="Task" Type="MakeBetter.Models.Task" Multiplicity="0..1" />
+          <End Role="Comment" Type="MakeBetter.Models.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Role="User" Type="MakeBetter.Models.User" Multiplicity="0..1" />
+          <End Role="Comment" Type="MakeBetter.Models.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_User">
+          <End Role="User" Type="MakeBetter.Models.User" Multiplicity="0..1" />
+          <End Role="Task" Type="MakeBetter.Models.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="UseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersInTask_Task">
+          <End Role="Task" Type="MakeBetter.Models.Task" Multiplicity="0..1" />
+          <End Role="UsersInTask" Type="MakeBetter.Models.UsersInTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="UsersInTask">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersInTask_User">
+          <End Role="User" Type="MakeBetter.Models.User" Multiplicity="0..1" />
+          <End Role="UsersInTask" Type="MakeBetter.Models.UsersInTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UsersInTask">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище MakeBetterModelContainer" CdmEntityContainer="MakeBetterEntities">
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="MakeBetter.Models.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Task">
+            <EntityTypeMapping TypeName="MakeBetter.Models.Task">
+              <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UseId" ColumnName="UseId" />
+                <ScalarProperty Name="TaskType" ColumnName="TaskType" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="DurationMinutes" ColumnName="DurationMinutes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="MakeBetter.Models.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="KloutId" ColumnName="KloutId" />
+                <ScalarProperty Name="DnaId" ColumnName="DnaId" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="VKId" ColumnName="VKId" />
+                <ScalarProperty Name="FacebookId" ColumnName="FacebookId" />
+                <ScalarProperty Name="GoogleId" ColumnName="GoogleId" />
+                <ScalarProperty Name="Banned" ColumnName="Banned" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersInTask">
+            <EntityTypeMapping TypeName="MakeBetter.Models.UsersInTask">
+              <MappingFragment StoreEntitySet="UsersInTask">
+                <ScalarProperty Name="UsersInTaskId" ColumnName="UsersInTaskId" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AllowedByOwner" ColumnName="AllowedByOwner" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="FinalHelperAgreement" ColumnName="FinalHelperAgreement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

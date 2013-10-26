@@ -1,0 +1,34 @@
+@model MakeBetter.Models.Comment
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Body)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Body)
+    @Html.ValidationMessageFor(model => model.Body)
+</div>
+
+<div class="editor-label">
+    Task
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.TaskId, ((IEnumerable<MakeBetter.Models.Task>)ViewBag.PossibleTask).Select(option => new SelectListItem {
+        Text = Html.DisplayTextFor(_ => option).ToString(), 
+        Value = option.TaskId.ToString(),
+        Selected = (Model != null) && (option.TaskId == Model.TaskId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.TaskId)
+</div>
+<div class="editor-label">
+    User
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.UserId, ((IEnumerable<MakeBetter.Models.User>)ViewBag.PossibleUser).Select(option => new SelectListItem {
+        Text = Html.DisplayTextFor(_ => option).ToString(), 
+        Value = option.UserId.ToString(),
+        Selected = (Model != null) && (option.UserId == Model.UserId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.UserId)
+</div>

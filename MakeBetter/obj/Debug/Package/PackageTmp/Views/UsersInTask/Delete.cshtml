@@ -1,0 +1,38 @@
+@model MakeBetter.Models.UsersInTask
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>UsersInTask</legend>
+
+    <div class="display-label">AllowedByOwner</div>
+    <div class="display-field">@Model.AllowedByOwner</div>
+
+    <div class="display-label">Rating</div>
+    <div class="display-field">@Model.Rating</div>
+
+    <div class="display-label">Comment</div>
+    <div class="display-field">@Model.Comment</div>
+
+    <div class="display-label">FinalHelperAgreement</div>
+    <div class="display-field">@Model.FinalHelperAgreement</div>
+
+    <div class="display-label">Task</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Task).ToString()</div>
+
+    <div class="display-label">User</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.User).ToString()</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+

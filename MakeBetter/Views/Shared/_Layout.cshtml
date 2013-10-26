@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/Bootstrap/css/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/jquery-1.8.2.js")
+    @Scripts.Render("~/Content/Bootstrap/js/bootstrap.js")
+</head>
+<body>
+                <nav class="navbar">
+                   
+                    <div class="navbar-inner">
+                        <a class="brand" href="~/">ASP.NET Web API</a>
+                        <ul class="nav nav-pills" id="menu">
+                            <li class="active">@Html.ActionLink("Домашняя страница", "Index", "Home", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("Пользователи", "Index", "User", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("Задачи", "Index", "Task", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("Комментарии", "Index", "Comment", new { area = "" }, null)</li>
+                        </ul>
+                    </div>
+                </nav>
+=   <div class="container">
+        @RenderBody()
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

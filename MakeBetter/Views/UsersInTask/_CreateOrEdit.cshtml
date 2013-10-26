@@ -1,0 +1,58 @@
+@model MakeBetter.Models.UsersInTask
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.AllowedByOwner)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.AllowedByOwner)
+    @Html.ValidationMessageFor(model => model.AllowedByOwner)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Rating)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Rating)
+    @Html.ValidationMessageFor(model => model.Rating)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Comment)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Comment)
+    @Html.ValidationMessageFor(model => model.Comment)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.FinalHelperAgreement)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.FinalHelperAgreement)
+    @Html.ValidationMessageFor(model => model.FinalHelperAgreement)
+</div>
+
+<div class="editor-label">
+    Task
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.TaskId, ((IEnumerable<MakeBetter.Models.Task>)ViewBag.PossibleTask).Select(option => new SelectListItem {
+        Text = Html.DisplayTextFor(_ => option).ToString(), 
+        Value = option.TaskId.ToString(),
+        Selected = (Model != null) && (option.TaskId == Model.TaskId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.TaskId)
+</div>
+<div class="editor-label">
+    User
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.UserId, ((IEnumerable<MakeBetter.Models.User>)ViewBag.PossibleUser).Select(option => new SelectListItem {
+        Text = Html.DisplayTextFor(_ => option).ToString(), 
+        Value = option.UserId.ToString(),
+        Selected = (Model != null) && (option.UserId == Model.UserId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.UserId)
+</div>

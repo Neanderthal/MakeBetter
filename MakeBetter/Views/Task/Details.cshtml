@@ -1,0 +1,53 @@
+@model MakeBetter.Models.Task
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Task</legend>
+
+    <div class="display-label">State</div>
+    <div class="display-field">@Model.State</div>
+
+    <div class="display-label">ShortDescription</div>
+    <div class="display-field">@Model.ShortDescription</div>
+
+    <div class="display-label">Description</div>
+    <div class="display-field">@Model.Description</div>
+
+    <div class="display-label">UseId</div>
+    <div class="display-field">@Model.UseId</div>
+
+    <div class="display-label">TaskType</div>
+    <div class="display-field">@Model.TaskType</div>
+
+    <div class="display-label">DateAdded</div>
+    <div class="display-field">@String.Format("{0:g}", Model.DateAdded)</div>
+
+    <div class="display-label">DurationMinutes</div>
+    <div class="display-field">@Model.DurationMinutes</div>
+
+    <div class="display-label">Latitude</div>
+    <div class="display-field">@String.Format("{0:F}", Model.Latitude)</div>
+
+    <div class="display-label">Longitude</div>
+    <div class="display-field">@String.Format("{0:F}", Model.Longitude)</div>
+
+    <div class="display-label">Comment</div>
+    <div class="display-field">@(Model.Comment == null ? "None" : Model.Comment.Count.ToString())</div>
+
+    <div class="display-label">User</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.User).ToString()</div>
+
+    <div class="display-label">UsersInTask</div>
+    <div class="display-field">@(Model.UsersInTask == null ? "None" : Model.UsersInTask.Count.ToString())</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.TaskId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
