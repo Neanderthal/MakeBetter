@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище MakeBetterModel" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Хранилище MakeBetterModelContainer">
+    <EntitySet Name="Comment" EntityType="Хранилище MakeBetterModel.Comment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Task" EntityType="Хранилище MakeBetterModel.Task" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="Хранилище MakeBetterModel.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UsersInTask" EntityType="Хранилище MakeBetterModel.UsersInTask" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Comment_Task" Association="Хранилище MakeBetterModel.FK_Comment_Task">
+      <End Role="Task" EntitySet="Task" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_User" Association="Хранилище MakeBetterModel.FK_Comment_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_User" Association="Хранилище MakeBetterModel.FK_Task_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersInTask_Task" Association="Хранилище MakeBetterModel.FK_UsersInTask_Task">
+      <End Role="Task" EntitySet="Task" />
+      <End Role="UsersInTask" EntitySet="UsersInTask" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersInTask_User" Association="Хранилище MakeBetterModel.FK_UsersInTask_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UsersInTask" EntitySet="UsersInTask" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Body" Type="nvarchar" MaxLength="500" />
+    <Property Name="TaskId" Type="uniqueidentifier" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="TaskId" />
+    </Key>
+    <Property Name="TaskId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="State" Type="tinyint" />
+    <Property Name="ShortDescription" Type="nvarchar" MaxLength="140" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="UseId" Type="uniqueidentifier" />
+    <Property Name="TaskType" Type="int" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="DurationMinutes" Type="int" />
+    <Property Name="Latitude" Type="float" />
+    <Property Name="Longitude" Type="float" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="NickName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rating" Type="int" />
+    <Property Name="KloutId" Type="nchar" MaxLength="15" />
+    <Property Name="DnaId" Type="nchar" MaxLength="15" />
+    <Property Name="PasswordHash" Type="nchar" MaxLength="200" />
+    <Property Name="VKId" Type="nchar" MaxLength="50" />
+    <Property Name="FacebookId" Type="nchar" MaxLength="50" />
+    <Property Name="GoogleId" Type="nchar" MaxLength="50" />
+    <Property Name="Banned" Type="bit" />
+    <Property Name="Phone" Type="nchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="UsersInTask">
+    <Key>
+      <PropertyRef Name="UsersInTaskId" />
+    </Key>
+    <Property Name="UsersInTaskId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TaskId" Type="uniqueidentifier" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="AllowedByOwner" Type="bit" />
+    <Property Name="Rating" Type="tinyint" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="140" />
+    <Property Name="FinalHelperAgreement" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Comment_Task">
+    <End Role="Task" Type="Хранилище MakeBetterModel.Task" Multiplicity="0..1" />
+    <End Role="Comment" Type="Хранилище MakeBetterModel.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="TaskId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="TaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_User">
+    <End Role="User" Type="Хранилище MakeBetterModel.User" Multiplicity="0..1" />
+    <End Role="Comment" Type="Хранилище MakeBetterModel.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_User">
+    <End Role="User" Type="Хранилище MakeBetterModel.User" Multiplicity="0..1" />
+    <End Role="Task" Type="Хранилище MakeBetterModel.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="UseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersInTask_Task">
+    <End Role="Task" Type="Хранилище MakeBetterModel.Task" Multiplicity="0..1" />
+    <End Role="UsersInTask" Type="Хранилище MakeBetterModel.UsersInTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="TaskId" />
+      </Principal>
+      <Dependent Role="UsersInTask">
+        <PropertyRef Name="TaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersInTask_User">
+    <End Role="User" Type="Хранилище MakeBetterModel.User" Multiplicity="0..1" />
+    <End Role="UsersInTask" Type="Хранилище MakeBetterModel.UsersInTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UsersInTask">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

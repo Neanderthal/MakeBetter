@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeBetter", "MakeBetter\MakeBetter.csproj", "{88DF6228-37EA-4682-90D5-C4CF34A23644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeBetter.Tests", "MakeBetter.Tests\MakeBetter.Tests.csproj", "{461117FC-7B55-4D35-8D1B-CF7FF2E93540}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88DF6228-37EA-4682-90D5-C4CF34A23644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88DF6228-37EA-4682-90D5-C4CF34A23644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88DF6228-37EA-4682-90D5-C4CF34A23644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88DF6228-37EA-4682-90D5-C4CF34A23644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{461117FC-7B55-4D35-8D1B-CF7FF2E93540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{461117FC-7B55-4D35-8D1B-CF7FF2E93540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{461117FC-7B55-4D35-8D1B-CF7FF2E93540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{461117FC-7B55-4D35-8D1B-CF7FF2E93540}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

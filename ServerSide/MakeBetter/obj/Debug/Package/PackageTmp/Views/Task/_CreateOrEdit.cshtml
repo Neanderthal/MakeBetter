@@ -1,0 +1,76 @@
+@model MakeBetter.Models.Task
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.State)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.State)
+    @Html.ValidationMessageFor(model => model.State)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.ShortDescription)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.ShortDescription)
+    @Html.ValidationMessageFor(model => model.ShortDescription)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Description)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Description)
+    @Html.ValidationMessageFor(model => model.Description)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.UseId)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.UseId)
+    @Html.ValidationMessageFor(model => model.UseId)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.TaskType)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.TaskType)
+    @Html.ValidationMessageFor(model => model.TaskType)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.DateAdded)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.DateAdded)
+    @Html.ValidationMessageFor(model => model.DateAdded)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.DurationMinutes)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.DurationMinutes)
+    @Html.ValidationMessageFor(model => model.DurationMinutes)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Latitude)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Latitude)
+    @Html.ValidationMessageFor(model => model.Latitude)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Longitude)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Longitude)
+    @Html.ValidationMessageFor(model => model.Longitude)
+</div>
+
