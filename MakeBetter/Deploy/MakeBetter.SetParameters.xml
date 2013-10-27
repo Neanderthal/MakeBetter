@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <setParameter name="IIS Web Application Name" value="Веб сайт" />
-  <setParameter name="MakeBetterEntities-развертывание-Deployment Connection String" value="" />
-  <setParameter name="MakeBetterEntities-Web.config Connection String" value="metadata=res://*/;provider=System.Data.SqlClient;provider connection string=&quot;data source=WIN-2E1P0GSIABI;initial catalog=MakeBetter;integrated security=True;multipleactiveresultsets=True;application name=EntityFramework&quot;" />
-</parameters>

@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<sitemanifest>
-  <DbFullSql path="C:\Users\Administrator\documents\visual studio 2012\Projects\MakeBetter\MakeBetter\obj\Debug\AutoScripts\MakeBetterEntities-развертывание_SchemaOnly.sql" Transacted="True" />
-  <IisApp path="C:\Users\Administrator\documents\visual studio 2012\Projects\MakeBetter\MakeBetter\obj\Debug\Package\PackageTmp" managedRuntimeVersion="v4.0" />
-  <setAcl path="C:\Users\Administrator\documents\visual studio 2012\Projects\MakeBetter\MakeBetter\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
-  <setAcl path="C:\Users\Administrator\documents\visual studio 2012\Projects\MakeBetter\MakeBetter\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
-</sitemanifest>
